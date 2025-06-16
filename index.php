@@ -21,6 +21,7 @@ header("Content-Type: application/json");
 // Detect request method and capture input data
 $method = $_SERVER['REQUEST_METHOD'];
 $input = $method === 'GET' ? $_GET : json_decode(file_get_contents('php://input'), true);
+$api_key = $input['api_key'];
 
 // Fetch action from GET query parameter
 $action = isset($_GET['action']) ? $_GET['action'] : 'undefined';
