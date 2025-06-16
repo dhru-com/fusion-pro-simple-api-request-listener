@@ -20,6 +20,7 @@ header("Content-Type: application/json");
 
 // Detect request method and capture input data
 $method = $_SERVER['REQUEST_METHOD'];
+
 $input = $method === 'GET' ? $_GET : json_decode(file_get_contents('php://input'), true);
 $api_key = $input['api_key'];
 
@@ -56,10 +57,11 @@ switch ($action) {
         ];
         break;
 
-    case 'place_order':
+    case 'place-order':
         // Expected fields in POST body: IMEI, product_id
         $IMEI = isset($input['IMEI']) ? $input['IMEI'] : null;
         $product_id = isset($input['product_id']) ? $input['product_id'] : null;
+        $Quantity = isset($input['Quantity']) ? $input['Quantity'] : 1;
 
         // Validate required fields
         if ($IMEI && $product_id) {
